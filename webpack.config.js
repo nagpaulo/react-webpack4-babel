@@ -10,6 +10,12 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
   title: 'Output Management'
 });
 
+const providePlugin = new webpack.ProvidePlugin({
+    '$': "jquery",
+    'jQuery': "jquery",
+    'Popper': 'popper.js'
+});
+
 const extractTextPlugin = new ExtractTextPlugin('app.css');
 var mode = process.env.NODE_ENV || 'development';
 module.exports = {
@@ -57,5 +63,5 @@ module.exports = {
             }
         ]
   },
-  plugins: [htmlWebpackPlugin,extractTextPlugin]
+  plugins: [htmlWebpackPlugin,extractTextPlugin,providePlugin]
 };

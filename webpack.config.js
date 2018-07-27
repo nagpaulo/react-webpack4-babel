@@ -16,6 +16,9 @@ module.exports = {
         port: 8000,
         contentBase: path.resolve('dist'),
     },
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
     module: {
         rules: [
             {

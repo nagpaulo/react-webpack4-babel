@@ -1,9 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import App from "./main/app";
 
-const Index = () => {
-    const message = "This is OK!"
-    return <div>{`Hello React! ${message}`}</div>;
-};
-
-ReactDOM.render(<Index />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById("app"));

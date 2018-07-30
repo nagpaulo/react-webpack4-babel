@@ -1,21 +1,15 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.min.css';
-import '../assets/css/base.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/css/font-awesome.css';
 import '../assets/css/bootstrap-drawer.css';
 import '../assets/css/menu.css';
+import Router from '../main/config/routes';
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Login from '../views/login';
 
-import jquery from 'jquery';
+import $ from 'jquery';
 import metismenu from 'metismenu';
 import bootstrap from 'bootstrap';
 
-const RouterConfig = () => (
-    <Router>
-        <Route exact path="/" component={Login} />
-    </Router>
-  );
-  
-  export default RouterConfig;
+export default props => (
+    <Router />
+)

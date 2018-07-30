@@ -7,7 +7,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
   filename: "./index.html",
-  title: 'Output Management'
+  title: 'Educacenso - Sistema de Validação e Processamento de Dados Escolares',
+  favicon: "src/assets/img/favicon.ico"
 });
 
 const providePlugin = new webpack.ProvidePlugin({

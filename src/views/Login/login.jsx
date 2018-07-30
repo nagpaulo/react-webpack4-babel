@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+
+import { autenticacao,changeUsername,changePassoword } from './loginAction'
+
 import logo from '../../assets/img/logo_gov_white.png';
 
 class Login extends Component {
     render(){
-        const message = "This is OK! Login";
+        const {username, password, autenticacao, changeUsername, changePassoword} = this.props;
         return (
             <div className="row-fluid">
                 <div className="centering">
@@ -19,13 +24,13 @@ class Login extends Component {
 
                                     <div className="col-md-6 login">
                                         <h3>Área Restrita</h3>
-                                        <p>Realize seu login utilizando sua conta da secrtetária.</p>
+                                        <p>Realize seu login utilizando sua conta.</p>
                                         <form method="post" action="#">
                                             <div className="form-group">
-                                                <input type="email" className="form" placeholder="Úsuario"/>
+                                                <input type="email" className="form" placeholder="Úsuario" id="username" value={username} onChange={changeUsername}/>
                                             </div>
                                             <div className="form-group">
-                                                <input type="password" className="form" placeholder="Senha"/>
+                                                <input type="password" className="form" placeholder="Senha" id="password" value={password} onChange={changePassoword}/>
                                             </div>
                                             <div className="row">
                                                 <div className="col-xs-6">
@@ -38,7 +43,7 @@ class Login extends Component {
                                                     <a href="#">Esqueçeu a senha?</a>
                                                 </div>
                                             </div>
-                                            <button type="button" className="btn">Acessar</button>
+                                            <button type="button" className="btn" onClick={ () => autenticacao(username,password) }>Acessar</button>
 
                                         </form>
 
@@ -57,4 +62,6 @@ class Login extends Component {
         )
     }
 }
-export default Login;
+const mapStateToProps = state => ({ username: state.login.username, password: state.login.password });
+const mapDispatchToProps = dispatch => bindActionCreators({ autenticacao,changeUsername,changePassoword },dispatch);
+export default connect(mapStateToProps,mapDispatchToProps)(Login);

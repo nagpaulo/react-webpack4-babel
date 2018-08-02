@@ -5,8 +5,8 @@ import Login from '../../views/Login/login';
 const RouterConfig = () => (
     <Router>
         <Route exact path="/" component={Login} />
-    </Router>
-  );
+    </Router>    
+);
 
 $("#menu-toggle").click(function(e) {
     e.preventDefault();

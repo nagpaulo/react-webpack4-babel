@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toastr } from 'react-redux-toastr';
 
 const URL = 'http://localhost:8080';
 
@@ -20,6 +21,12 @@ export function create(values) {
         "senha": values.password
     }
     axios.post(url_,body,axiosConfig)
+        .then(resp => {
+            toastr.success('Sucesso','Operação realizada com sucesso.')
+        })
+        .catch(resp => { 
+            toastr.error('Erro', `Erro encontrado: ${resp.message}`) 
+        });
     return {
         type: 'TEMP'
     }

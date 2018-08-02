@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 import '../assets/css/bootstrap-drawer.css';
+import '../assets/css/base.css';
 import '../assets/css/menu.css';
 import Router from '../main/config/routes';
 

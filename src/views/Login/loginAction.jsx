@@ -3,8 +3,8 @@ import { toastr } from 'react-redux-toastr';
 
 const URL = 'http://localhost:8080';
 
-export function create(values) {
-    //console.log(values)
+export function authentication(values) {
+
     let url_ = `${URL}/auth`;
     let axiosConfig = {
         headers: {
@@ -17,17 +17,29 @@ export function create(values) {
     };
 
     var body = {
-        "email": values.email,
-        "senha": values.password
+        "email": values.usuario,
+        "senha": values.senha
     }
-    axios.post(url_,body,axiosConfig)
-        .then(resp => {
-            toastr.success('Sucesso','Operação realizada com sucesso.')
-        })
-        .catch(resp => { 
-            toastr.error('Erro', `Erro encontrado: ${resp.message}`) 
-        });
+
+    if(body.email && body.senha){
+        axios.post(url_,body,axiosConfig)
+            .then(resp => {
+                toastr.success('Sucesso','Operação realizada com sucesso.')
+            })
+            .catch(resp => { 
+                toastr.error('Acesso negado','Você deve estar autenticado no sistema para acessar.') 
+            });
+    }else{
+        toastr.warning('Campos Obrigatório!','Usuario ou Senha não informado.')
+    }
     return {
-        type: 'TEMP'
+        type: 'AUTENTICACAO_LOGIN'
+    }
+}
+
+export function recuperarSenha(values){
+    console.log(values);
+    return {
+        type: 'RECUPERAR_SENHA'
     }
 }

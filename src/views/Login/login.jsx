@@ -3,13 +3,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import LoginForm from './loginForm';
-import { create } from './loginAction';
+import { authentication, recuperarSenha } from './loginAction';
 
 import logo from '../../assets/img/logo_gov_white.png';
 
 class Login extends Component {
     render(){
-        const { create } = this.props;
+        const { authentication } = this.props;
         return (
             <div className="row-fluid">
                 <div className="centering">
@@ -22,7 +22,7 @@ class Login extends Component {
                                     <div className="col-md-6 logo-top hidden-md hidden-lg text-center">
                                         <img src={logo} alt={"logo"} />
                                     </div>
-                                    <LoginForm onSubmit={ create }/>
+                                    <LoginForm onSubmit={ authentication } onSubmitModal={ recuperarSenha }/>
                                     <div className="col-md-6 logo-right text-center vertical-align hidden-xs hidden-sm">
                                         <img className="img-responsive text-center vcenter" src={logo} alt={"logo"}/>
                                     </div>
@@ -37,5 +37,5 @@ class Login extends Component {
         )
     }
 }
-const mapDispatchToProps = dispatch => bindActionCreators({ create },dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ authentication, recuperarSenha },dispatch)
 export default connect(null, mapDispatchToProps)(Login);

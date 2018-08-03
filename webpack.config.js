@@ -50,7 +50,7 @@ module.exports = {
                     loader: "babel-loader"
                 }
             },{
-                test: /\.css$/,
+                test: /\.(css)$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: "css-loader"
@@ -61,7 +61,13 @@ module.exports = {
                 options: {
                     limit: 10000
                 }
-            }
+            },{
+                test: /font-awesome\.config\.js/,
+                use: [
+                  { loader: 'style-loader' },
+                  { loader: 'font-awesome-loader' }
+                ]
+                },
         ]
   },
   plugins: [htmlWebpackPlugin,extractTextPlugin,providePlugin]

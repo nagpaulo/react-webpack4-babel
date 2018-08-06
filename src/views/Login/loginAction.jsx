@@ -41,6 +41,7 @@ export function authentication(values) {
 }
 
 export function recuperarSenha(values){
+    console.log(values);
     return {
         type: 'RECUPERAR_SENHA'
     }

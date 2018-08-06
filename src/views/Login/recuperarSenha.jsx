@@ -3,6 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { reduxForm, Field } from 'redux-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import labelAndInput from '../../common/form/labelAndInput';
+import { createTextMask } from 'redux-form-input-masks';
 
 class RecuperarSenha extends Component {
     constructor(props){
@@ -11,6 +12,9 @@ class RecuperarSenha extends Component {
 
     render(){
         const { show, handleClose, handleSubmit ,submitting } = this.props;
+        const cpfMask = createTextMask({
+            pattern: '999.999.999-99'
+        });
         return(
             <Modal show={show} onHide={handleClose}>
                 <form method="post" onSubmit={handleSubmit}>
@@ -29,7 +33,7 @@ class RecuperarSenha extends Component {
                             <label htmlFor="">Informe o CPF para que seja feito o envio de uma nova senha.<br /></label>
                         </div>
                         <div className="col-xs-12 col-sm-12 col-md-12">
-                            <Field name="cpf" className="form" placeholder="CPF" component="input" type="text" />
+                            <Field name="cpf" className="form" placeholder="CPF" component="input" type="text" {...cpfMask}/>
                         </div>    
                     </div>   
                 </Modal.Body>

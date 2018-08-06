@@ -55,6 +55,8 @@ body{ background-image: url("../img/bg.jpg"); background-position: center right;
 .btn:hover{             background: #e35e31; color:#FFF; }
 .img-responsive {       margin: 0 auto;}
 
+.form{               border: 0px; border-bottom: 1px solid #CCC; padding: 5px; display: block; display: block;  width: 100%; color: #9d9d9d;}
+
 /*  */
 .padding-0{             padding: 0px !Important}
 .margin-top-10{         margin-top: 10px;}

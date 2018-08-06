@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { reduxForm, Field } from 'redux-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import labelAndInput from '../../common/form/labelAndInput';
 
 class RecuperarSenha extends Component {
     constructor(props){
         super(props);
-        console.log(props);
     }
 
     render(){
@@ -17,19 +17,16 @@ class RecuperarSenha extends Component {
                     <Modal.Title>Recuperar Senha</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="form-group">
-                                <Field name="usuario" className="form-control" placeholder="Usuário" component="input" type="text" />
-                            </div>
-                            <div className="form-group">
-                                <Field name="email" className="form-control" placeholder="email" component="input" type="password" />
-                            </div>
-                            <div className="form-group">
-                                <Field name="cpf" className="form-control" placeholder="CPF" component="input" type="password" />
-                            </div>
+                    <form action="">
+                        <div className="row">
+                            <Field name="usuario" component={labelAndInput} cols="12 12" 
+                                placeholder="Infome o usuário"/>
+                            <Field name="email" component={labelAndInput} cols="12 12" 
+                                placeholder="Informe o email."/>
+                            <Field name="cpf" component={labelAndInput} cols="12 12" 
+                                placeholder="Informe o CPF."/>
                         </div>
-                    </div>    
+                    </form>    
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={handleClose} className="btn btn-default"><FontAwesomeIcon icon="times-circle" />  Fechar</Button>

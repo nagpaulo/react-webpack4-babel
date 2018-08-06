@@ -10,28 +10,34 @@ class RecuperarSenha extends Component {
     }
 
     render(){
-        const { show, handleClose, onSubmitModal,submitting } = this.props;
+        const { show, handleClose, handleSubmit ,submitting } = this.props;
         return(
             <Modal show={show} onHide={handleClose}>
+                <form method="post" onSubmit={handleSubmit}>
                 <Modal.Header closeButton>
                     <Modal.Title>Recuperar Senha</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form action="">
-                        <div className="row">
-                            <Field name="usuario" component={labelAndInput} cols="12 12" 
-                                placeholder="Infome o usuário"/>
-                            <Field name="email" component={labelAndInput} cols="12 12" 
-                                placeholder="Informe o email."/>
-                            <Field name="cpf" component={labelAndInput} cols="12 12" 
-                                placeholder="Informe o CPF."/>
+                    <div className="row">
+                        <div className="col-xs-12 col-sm-12 col-md-12">
+                            <div className="alert alert-info" role="alert">
+                                <b>Atenção: </b> O envio do e-mail com sua nova senha, poderá demorar alguns minutos para chegar. 
+                                Caso não chegue na "Caixa de Entrada", verifique o "SPAM" do seu e-mail.
+                            </div>
                         </div>
-                    </form>    
+                        <div className="col-xs-12 col-sm-12 col-md-12">
+                            <label htmlFor="">Informe o CPF para que seja feito o envio de uma nova senha.<br /></label>
+                        </div>
+                        <div className="col-xs-12 col-sm-12 col-md-12">
+                            <Field name="cpf" className="form" placeholder="CPF" component="input" type="text" />
+                        </div>    
+                    </div>   
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={handleClose} className="btn btn-default"><FontAwesomeIcon icon="times-circle" />  Fechar</Button>
-                    <Button onClick={onSubmitModal} className="btn" disabled={submitting}><FontAwesomeIcon icon="share-square" /> Enviar</Button>
+                    <Button type="submit" className="btn" disabled={submitting}><FontAwesomeIcon icon="share-square" /> Enviar</Button>
                 </Modal.Footer>
+                </form>
             </Modal>
         )
     }

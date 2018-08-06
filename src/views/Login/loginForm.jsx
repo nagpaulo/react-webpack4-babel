@@ -49,7 +49,7 @@ class LoginForm extends Component {
                     </div>
                     <button type="submit" className="btn" disabled={submitting}><FontAwesomeIcon icon="share-square" /> Acessar</button>
                 </form>
-                <RecuperarSenha handleClose={this.handleClose} show={this.state.show} onSubmitModal={onSubmitModal}/>
+                <RecuperarSenha handleClose={this.handleClose} show={this.state.show} onSubmit={onSubmitModal}/>
             </div>
         )
     }

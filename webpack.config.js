@@ -23,13 +23,15 @@ module.exports = {
     entry: "./src/index.jsx",
     output: {
         path: path.resolve('dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/'
     },
     devtool: (mode === 'development') ? 'inline-source-map' : false,
     mode: mode,
     devServer: {
         port: 8000,
         contentBase: path.resolve('dist'),
+        historyApiFallback: true
     },
     resolve: {
         extensions: ['.js', '.jsx'],

@@ -1,37 +1,41 @@
 import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
 import { reset as resetForm  } from 'redux-form';
+import { APPLICATION } from '../../main/config/configServer';
+import { localStorageToken, logoutUser, removerToken } from '../../main/auth/authentication';
+import { sessionService } from 'redux-react-session';
+import history from '../../main/config/history';
 
-const URL = 'http://localhost:8080';
+const URL = APPLICATION.URL_TOKEN_OAUTH;
 
 export function authentication(values) {
     return dispatch => {
-        let url_ = `${URL}/auth`;
         let axiosConfig = {
             headers: {
-                'async': true,
-                'crossDomain': true,
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type':'application/json',
-                'Cache-Control': 'no-cache'
+                'Content-Type':'application/x-www-form-urlencoded',
+                'Authorization': 'Basic ' + new Buffer(`${APPLICATION.USER_GLOBAL}:${APPLICATION.PASS_GLOBAL}`).toString('base64')
             }
         };
 
-        var body = {
-            "email": values.usuario,
-            "senha": values.senha
-        }
+        var body = `username=${values.usuario}&password=${values.senha}`
 
-        if(body.email && body.senha){
-            axios.post(url_,body,axiosConfig)
+        if(values.usuario && values.senha){
+            axios.post(URL,body,axiosConfig)
                 .then(resp => {
-                    toastr.success('Sucesso','Operação realizada com sucesso.')
+                    sessionService.saveSession(resp.data.access_token);
+                    sessionService.saveUser(resp.data);
                     dispatch([
                         resetForm('loginForm')
                     ]);
-                })
-                .catch(resp => { 
-                    toastr.error('Acesso negado','Você deve estar autenticado no sistema para acessar.') 
+                    history.push('/home');
+                }).catch(function (error) {
+                    sessionService.deleteSession();
+                    sessionService.deleteUser();
+                    if(error.response.status = 400){                       
+                        toastr.error('Acesso negado',`Você deve estar autenticado no sistema para acessar.`) 
+                    }else{
+                        toastr.error('Error', error.message);
+                    }
                 });
         }else{
             if(!body.email) toastr.warning('Campo Obrigatório!','Usuario não informado.');
@@ -44,5 +48,13 @@ export function recuperarSenha(values){
     console.log(values);
     return {
         type: 'RECUPERAR_SENHA'
+    }
+}
+
+export function logout(){
+    sessionService.deleteSession();
+    sessionService.deleteUser();    
+    return {
+        type: 'LOGOUT'
     }
 }

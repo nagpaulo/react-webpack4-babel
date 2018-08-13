@@ -12,7 +12,7 @@ class LoginForm extends Component {
     }
 
     componentWillMount() {
-        this.setState({ show: false })
+        this.setState({ show: false, actions: [] })
     }
 
     handleClose() {

@@ -38,8 +38,8 @@ class RecuperarSenha extends Component {
                     </div>   
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={handleClose} className="btn btn-default"><FontAwesomeIcon icon="times-circle" />  Fechar</Button>
-                    <Button type="submit" className="btn" disabled={submitting}><FontAwesomeIcon icon="share-square" /> Enviar</Button>
+                    <Button onClick={handleClose} className="btn btn-custom"><FontAwesomeIcon icon="times-circle" />  Fechar</Button>
+                    <Button type="submit" className="btn btn-custom" disabled={submitting}><FontAwesomeIcon icon="share-square" /> Enviar</Button>
                 </Modal.Footer>
                 </form>
             </Modal>

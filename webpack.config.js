@@ -14,7 +14,8 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
 const providePlugin = new webpack.ProvidePlugin({
     '$': "jquery",
     'jQuery': "jquery",
-    'Popper': 'popper.js'
+    'Popper': 'popper.js',
+    "window.jQuery": "jquery"
 });
 
 const extractTextPlugin = new ExtractTextPlugin('app.css');

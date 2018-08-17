@@ -16,21 +16,22 @@ import bootstrap from 'bootstrap';
 import PropTypes from 'prop-types';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import Home from '../views/Home/home';
 import Login from '../views/Login/login';
 import PrivateRoute from '../main/config/privateRoute';
 import History from '../main/config/history';
+import MatriculaInicial from '../views/Acompanhamento/matriculaInicial'
 
 const App = ({ authenticated, checked }) => (
   <Router history={History}>
     { checked &&
-      <div className="container-fluid">
         <Switch>
           <PrivateRoute exact path="/home" component={Home} authenticated={authenticated}/>
+          <PrivateRoute exact path="/matricula-inicial" component={MatriculaInicial} authenticated={authenticated}/>
           <Route path="/login" component={Login}/>
           <Redirect from='/' to='/login'/>
         </Switch>
-      </div>
     }
   </Router>
 );

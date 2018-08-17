@@ -47,7 +47,7 @@ class LoginForm extends Component {
                             <a href="#" onClick={this.handleShow}>Esqueçeu a senha?</a>
                         </div>
                     </div>
-                    <button type="submit" className="btn" disabled={submitting}><FontAwesomeIcon icon="share-square" /> Acessar</button>
+                    <button type="submit" className="btn btn-custom" disabled={submitting}><FontAwesomeIcon icon="share-square" /> Acessar</button>
                 </form>
                 <RecuperarSenha handleClose={this.handleClose} show={this.state.show} onSubmit={onSubmitModal}/>
             </div>

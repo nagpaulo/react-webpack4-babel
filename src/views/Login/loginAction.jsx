@@ -2,7 +2,6 @@ import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
 import { reset as resetForm  } from 'redux-form';
 import { APPLICATION } from '../../main/config/configServer';
-import { localStorageToken, logoutUser, removerToken } from '../../main/auth/authentication';
 import { sessionService } from 'redux-react-session';
 import history from '../../main/config/history';
 

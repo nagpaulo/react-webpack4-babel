@@ -218,7 +218,17 @@ body{ background-image: url("../img/bg.jpg"); background-position: center right;
     font-weight: 100
 }
 
+.loading-template {
+    position:absolute;
+    left:50%;
+    top:50%;
+}
 
+.loading-template label{
+    font-size: 12px;
+    color: #153a0c;
+    font-weight: 400 !important;
+}
 
 .list-group{            margin-bottom:-10px !Important;}
 /****** - MEDIA QUERY - ******/

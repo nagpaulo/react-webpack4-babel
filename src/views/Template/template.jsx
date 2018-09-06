@@ -12,12 +12,16 @@ class Template extends Component {
         super(props);
     }
 
+    componentDidMount(){
+        this.props.actions.detalheUsuario();
+    }
+
     render(){
-        const { actions, user, authenticated, view } = this.props;
+        const { actions, user, authenticated, view, detalhe } = this.props;
         const View = view;
         return (
             <div className="table-layout">
-                <Menu actions={actions} user={user} authenticated={authenticated}/>
+                <Menu actions={actions} user={user} authenticated={authenticated} detalhe={detalhe} />
                 <div className="table-cell">
                     <div className=" row margin-left-rigth-15">
                         <Header />
@@ -36,9 +40,11 @@ Template.propTypes = {
     authenticated: bool.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     user: state.session.user,
-    authenticated: state.session.authenticated
+    authenticated: state.session.authenticated,
+    actions: state.session.actions,
+    detalhe: state.usuario.detalhe
 });
 
 const mapDispatchToProps = (dispatch) => {
@@ -46,5 +52,4 @@ const mapDispatchToProps = (dispatch) => {
         actions: bindActionCreators(sessionActions, dispatch)
     };
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(Template);

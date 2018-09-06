@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CONSTANTS } from '../../main/utils/constants';
+import { CONSTANTS } from '../../common/utils/constants';
 
 class Footer extends Component{
     constructor(props){

@@ -19,17 +19,19 @@ class Menu extends Component{
 
     render(){
         const { actions, user, authenticated } = this.props;
+        const detalhe = this.props.detalhe || [];
+        const ultimoAcesso = detalhe.ultimoAcesso || '';
         return (
             <div className="table-cell padding-left-right-0 sidebar navbar navbar-default">
                 <div className="ultimo-acesso text-center">
                     <div>
-                        <FontAwesomeIcon icon="calendar" /> Último Acesso: 12/11/2017
+                        <FontAwesomeIcon icon="calendar" /> Último Acesso: {ultimoAcesso}
                     </div>
                 </div>
                 <div className="profile text-center hidden-xs">
                     <img src={ profile } height="60" width="60" alt="Foto do Úsuario" className="img-responsive"/>
-                    <div className="nome hidden-xs">Fulano de Tal</div>
-                    <div className="cargo">COORDENADORIA REGIONAL</div>
+                    <div className="nome hidden-xs">{detalhe.nome}</div>
+                    <div className="cargo">{detalhe.unidadeTrabalho}</div>
                 </div>
                 <div className="drawer navbar-header" data-toggle="drawer">
                     <button type="button" className="navbar-toggle" data-toggle="drawer" data-target=".navbar-responsive-collapse">
@@ -42,7 +44,7 @@ class Menu extends Component{
                 <div className="navbar-collapse collapse navbar-responsive-collapse padding-left-right-0 ">
                     <div className="hidden-sm hidden-md hidden-lg">
                         <div className="ultimo-acesso text-center ">
-                            <i className="fa fa-calendar" aria-hidden="true"></i> Último Acesso: 12/11/2017
+                            <FontAwesomeIcon icon="calendar" />  {ultimoAcesso}
                         </div>
                         <div className="profile text-center ">
                             <img src={ profile } height="40" width="40" alt="Foto do Úsuario"/>

@@ -30,6 +30,7 @@ export function mouseLeaves(e) {
 export function expandeMenu() {
     $('.nome').removeClass('hidden');
     $('.cargo').removeClass('hidden');
+    $('.ultimo-acesso').removeClass('hidden');
 
     $('.profile').css({'padding-top': '5px'});
     $('.sidebar').css('width', '270px');
@@ -49,7 +50,7 @@ export function recolheMenu() {
     $('.profile').css({'padding-top': '30px'});
     $('#sidebar-wrapper').css('margin', '0px');
     $('.dropdown-submenu span').css('display', 'none');
-    /*$('.panel-collapse').css('border', '1px solid red');*/
+    /* $('.panel-collapse').css('border', '1px solid red'); */
     /*$('.dropdown-submenu .panel-collapse').css('display','none');*/
     menuOut();
 }

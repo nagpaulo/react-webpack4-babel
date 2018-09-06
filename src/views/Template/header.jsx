@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import logo_brasao from '../../assets/img/logo_brasao.png';
 import logo_gov from '../../assets/img/logo_gov.png';
-import { CONSTANTS } from '../../main/utils/constants';
+import { CONSTANTS } from '../../common/utils/constants';
 
 class Header extends Component {
     render(){

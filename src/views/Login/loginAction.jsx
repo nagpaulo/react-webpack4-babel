@@ -4,6 +4,8 @@ import { reset as resetForm  } from 'redux-form';
 import { APPLICATION } from '../../main/config/configServer';
 import { sessionService } from 'redux-react-session';
 import history from '../../main/config/history';
+import {init} from '../../common/generics/api/GenericApi';
+import AuthUtils from '../../common/auth/AuthUtils';
 
 const URL = APPLICATION.URL_TOKEN_OAUTH;
 
@@ -21,15 +23,13 @@ export function authentication(values) {
         if(values.usuario && values.senha){
             axios.post(URL,body,axiosConfig)
                 .then(resp => {
-                    sessionService.saveSession(resp.data.access_token);
-                    sessionService.saveUser(resp.data);
+                    AuthUtils.setSessionServicesUser(resp.data);
                     dispatch([
                         resetForm('loginForm')
                     ]);
                     history.push('/home');
                 }).catch(function (error) {
-                    sessionService.deleteSession();
-                    sessionService.deleteUser();
+                    AuthUtils.cleanSessionServicesUser();
                     if(error.response.status = 400){                       
                         toastr.error('Acesso negado',`Você deve estar autenticado no sistema para acessar.`) 
                     }else{
@@ -43,16 +43,39 @@ export function authentication(values) {
     }
 }
 
-export function recuperarSenha(values){
+export const detalheUsuario = () => {
+    return dispatch => {
+        let getUser = AuthUtils.getSessionUser();
+        let url_ = `${APPLICATION.SERVER_URL_USER_DEV}usuario-logado`;
+
+        getUser.then(function(user){
+            let axiosConfig = {
+                headers: {
+                    'async': true,
+                    'crossDomain': true,
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type':'application/json',
+                    'Cache-Control': 'no-cache',
+                    'Authorization':`${user.token_type} ${user.access_token}` 
+                }
+            };
+
+            axios.get(url_,axiosConfig)
+              .then( resp => dispatch({ type: 'DETALHE_USER', payload: resp.data }))
+        });
+    }
+}
+
+
+export const recuperarSenha = (values) => {
     console.log(values);
     return {
         type: 'RECUPERAR_SENHA'
     }
 }
 
-export function logout(){
-    sessionService.deleteSession();
-    sessionService.deleteUser();    
+export const logout = () => {
+    AuthUtils.cleanSessionServicesUser();   
     return {
         type: 'LOGOUT'
     }

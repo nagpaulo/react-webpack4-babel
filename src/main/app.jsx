@@ -17,19 +17,18 @@ import PropTypes from 'prop-types';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Home from '../views/Home/home';
-import Login from '../views/Login/login';
 import PrivateRoute from '../main/config/privateRoute';
 import History from '../main/config/history';
-import MatriculaInicial from '../views/Acompanhamento/matriculaInicial'
+
+import { LoadableHome, LoadableLogin, LoadableMatriculaInicial } from '../main/config/loadable';
 
 const App = ({ authenticated, checked }) => (
   <Router history={History}>
     { checked &&
         <Switch>
-          <PrivateRoute exact path="/home" component={Home} authenticated={authenticated}/>
-          <PrivateRoute exact path="/matricula-inicial" component={MatriculaInicial} authenticated={authenticated}/>
-          <Route path="/login" component={Login}/>
+          <PrivateRoute exact path="/home" component={LoadableHome} authenticated={authenticated}/>
+          <PrivateRoute exact path="/matricula-inicial" component={LoadableMatriculaInicial} authenticated={authenticated}/>
+          <Route path="/login" component={LoadableLogin}/>
           <Redirect from='/' to='/login'/>
         </Switch>
     }
